@@ -1,0 +1,11 @@
+google-cloud-datastore==2.4.0
+httpx==0.21.1
+libcst==0.3.23
+protobuf==3.19.1
+pycryptodome
+Pygments==2.11.1
+pyjwt==2.3.0
+python-dialpad==2.1.0
+rsa
+sanic==21.12.0
+git+https://github.com/mpdavis/python-jose@99ec142374a6eb98e32be5b8cdfd72508fd404d4#egg=python-jose
