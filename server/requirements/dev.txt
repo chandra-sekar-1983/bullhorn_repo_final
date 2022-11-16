@@ -1,0 +1,6 @@
+-r base.txt
+
+ipdb
+python-dotenv
+redis
+IPython
