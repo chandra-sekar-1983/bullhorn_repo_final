@@ -1,0 +1,22 @@
+services:
+  test-app-server:
+    command: bash -c "python wait_for_it.py redis-db 8082 && python /server/server.py"
+    environment:
+      - REDIS_HOST=redis-db
+
+  test-server:
+    environment:
+      - REDIS_HOST=redis-db
+
+  redis-db:
+    image: redis:latest
+    command: redis-server --port 8082
+    ports:
+      - "8082:8082"
+    expose:
+      - "8082"
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:

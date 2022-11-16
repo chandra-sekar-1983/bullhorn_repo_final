@@ -1,0 +1,36 @@
+services:
+  test-app-server:
+    command: bash -c "python wait_for_it.py datastore-db 8082 && python /server/server.py"
+    environment:
+      - DATASTORE_DATASET=dev
+      - DATASTORE_EMULATOR_HOST=datastore-db:8082
+      - DATASTORE_EMULATOR_HOST_PATH=datastore-db:8082/datastore
+      - DATASTORE_HOST=http://datastore-db:8082
+      - DATASTORE_PROJECT_ID=dev
+      - DATASTORE_PORT=8082
+      - ORM_CLIENT=core.orm.clients.datastore.DatastoreClient
+
+  test-server:
+    environment:
+      - DATASTORE_DATASET=dev
+      - DATASTORE_EMULATOR_HOST=datastore-db:8082
+      - DATASTORE_EMULATOR_HOST_PATH=datastore-db:8082/datastore
+      - DATASTORE_HOST=http://datastore-db:8082
+      - DATASTORE_PROJECT_ID=dev
+      - DATASTORE_PORT=8082
+      - ORM_CLIENT=core.orm.clients.datastore.DatastoreClient
+
+  datastore-db:
+    build:
+      context: .
+      dockerfile: ./docker_files/dev/datastore.Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - DATASTORE_DATASET=dev
+      - DATASTORE_EMULATOR_HOST=datastore-db:8082
+      - DATASTORE_EMULATOR_HOST_PATH=datastore-db:8082/datastore
+      - DATASTORE_HOST=http://datastore-db:8082
+      - DATASTORE_PROJECT_ID=dev
+      - DATASTORE_PORT=8082
+    command: gcloud beta emulators datastore start --no-store-on-disk --project=dev --host-port=0.0.0.0:8082

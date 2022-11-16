@@ -1,0 +1,45 @@
+version: "3.9"
+services: 
+  client:
+    build:
+      context: .
+      dockerfile: ./docker_files/dev/client.Dockerfile
+    command: npm run dev
+    volumes:
+      - ./client/src:/client/src
+      - ./client/envLoader.js:/client/envLoader.js
+      - ./client/index.html:/client/index.html
+      - ./client/favicon.ico:/client/favicon.ico
+      - ./client/static:/client/static
+    ports:
+      - "8087:8087"
+    env_file:
+      - .env
+    environment:
+      - ENV=dev
+      - BASE_URL=http://localhost:8088
+      - DEBUG=1
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: .
+      dockerfile: ./docker_files/dev/server.Dockerfile
+    command: bash -c "python wait_for_it.py db 8081 && python /server/server.py"
+    volumes:
+      - ./server:/server
+      - ./client/static:/server/static
+      - ./client/static:/server/templates
+    ports:
+      - "8088:8088"
+    stdin_open: true
+    tty: true
+    environment:
+      - ENV=dev
+      - BASE_URL=http://localhost:8088
+      - DEBUG=1
+    env_file:
+      - .env
+    depends_on:
+      - db

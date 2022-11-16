@@ -1,0 +1,30 @@
+services:
+  server:
+    environment:
+      - DATASTORE_DATASET=dev
+      - DATASTORE_EMULATOR_HOST=db:8081
+      - DATASTORE_EMULATOR_HOST_PATH=db:8081/datastore
+      - DATASTORE_HOST=http://db:8081
+      - DATASTORE_PROJECT_ID=dev
+      - DATASTORE_PORT=8081
+      - ORM_CLIENT=core.orm.clients.datastore.DatastoreClient
+
+  db:
+    build:
+      context: .
+      dockerfile: ./docker_files/dev/datastore.Dockerfile
+    volumes:
+      - db-data:/data
+    ports:
+      - "8081:8081"
+    environment:
+      - DATASTORE_DATASET=dev
+      - DATASTORE_EMULATOR_HOST=db:8081
+      - DATASTORE_EMULATOR_HOST_PATH=db:8081/datastore
+      - DATASTORE_HOST=http://db:8081
+      - DATASTORE_PROJECT_ID=dev
+      - DATASTORE_PORT=8081
+    command: gcloud beta emulators datastore start --data-dir=/data --project=dev --host-port=0.0.0.0:8081
+
+volumes:
+  db-data:
