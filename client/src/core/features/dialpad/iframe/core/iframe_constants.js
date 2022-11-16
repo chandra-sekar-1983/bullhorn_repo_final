@@ -1,0 +1,79 @@
+const GET_USER = 'get/user';
+const GET_CONTACT = 'get/contact';
+const GET_CALL = 'get/call';
+const INIT = 'init';
+const ON_CALL = 'on/call';
+const OFF_CALL = 'off/call';
+const ON_DISCONNECT = 'on/disconnect';
+const OFF_DISCONNECT = 'off/disconnect';
+const AUTH_EXTERNAL = 'auth/external';
+const SEND_TOAST = 'send/toast';
+const SET_CONTACT = 'set/contact';
+const TRACK_EVENT = 'track/event';
+const SCREEN_POP = 'get/screen_pop';
+
+const CONVERSATION_SIDEBAR = 'conversation_sidebar';
+
+const ALLOWED_PATHS = {
+  [CONVERSATION_SIDEBAR]: [
+    GET_USER,
+    GET_CONTACT,
+    GET_CALL,
+    INIT,
+    ON_CALL,
+    OFF_CALL,
+    ON_DISCONNECT,
+    OFF_DISCONNECT,
+    SEND_TOAST,
+    SET_CONTACT,
+    AUTH_EXTERNAL,
+    TRACK_EVENT,
+    SCREEN_POP,
+  ],
+};
+
+const SUBSCRIPTION_PATHS = [
+  ON_CALL,
+  ON_DISCONNECT,
+];
+
+const OK = 'OK';
+const NOT_FOUND = 'NOT_FOUND';
+const NOT_INITIALIZED = 'NOT_INITIALIZED';
+const PATH_NOT_FOUND = 'PATH_NOT_FOUND';
+const SUBSCRIPTION_ADDED = 'SUBSCRIPTION_ADDED';
+const SUBSCRIPTION_REMOVED = 'SUBSCRIPTION_REMOVED';
+const CLOSE_POPUP_EVENT = 'close_popup';
+
+const ERROR_STATUSES = [
+  NOT_FOUND,
+  NOT_INITIALIZED,
+  PATH_NOT_FOUND,
+];
+
+export default {
+  GET_USER,
+  GET_CONTACT,
+  GET_CALL,
+  ON_CALL,
+  OFF_CALL,
+  INIT,
+  ON_DISCONNECT,
+  OFF_DISCONNECT,
+  AUTH_EXTERNAL,
+  SEND_TOAST,
+  SET_CONTACT,
+  TRACK_EVENT,
+  SCREEN_POP,
+  CONVERSATION_SIDEBAR,
+  ALLOWED_PATHS,
+  OK,
+  NOT_FOUND,
+  NOT_INITIALIZED,
+  PATH_NOT_FOUND,
+  SUBSCRIPTION_ADDED,
+  SUBSCRIPTION_REMOVED,
+  SUBSCRIPTION_PATHS,
+  ERROR_STATUSES,
+  CLOSE_POPUP_EVENT
+};

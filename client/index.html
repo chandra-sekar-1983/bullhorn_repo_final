@@ -1,0 +1,41 @@
+<html lang="en">
+  <head>
+    <link rel="icon" href="favicon.ico">
+    <meta charset="UTF-8">
+    <script>
+      const __ACCESS_TOKEN__ = template.context.ACCESS_TOKEN
+      const __OAUTH_APP_SETTINGS__ = template.context.OAUTH_APP_SETTINGS
+    </script>
+    <style>
+      .lds-dual-ring {
+        display: inline-block;
+      }
+      .lds-dual-ring:after {
+        content: " ";
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6px solid #000;
+        border-color: #000 transparent #000 transparent;
+        animation: lds-dual-ring 1.2s linear infinite;
+      }
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="d-d-flex d-jc-center d-ai-flex-start">
+        <div class="d-w50p d-h50p lds-dual-ring"></div>
+      </div>
+    </div>
+  </body>
+</html>
